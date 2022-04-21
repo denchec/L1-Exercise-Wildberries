@@ -12,18 +12,18 @@ func main() {
 	checkError(bErr)
 
 	C := A * B
-	fmt.Println("A * B", C) // Выводим значение умножения
+	fmt.Println("A * B", C)
 	C = A + B
-	fmt.Println("A + B", C) // Выводим значение сложения
+	fmt.Println("A + B", C)
 	C = A - B
-	fmt.Println("A - B", C) // Выводим значение разности
+	fmt.Println("A - B", C)
 	C = A % B
-	fmt.Println("A % B", C) // Выводим значение вычисления остатка от деления
+	fmt.Println("A % B", C)
 	C = A / B
-	fmt.Println("A / B", C) // Выводим значение целочисленного деления
+	fmt.Println("A / B", C)
 	var D float64
 	D = float64(A) / float64(B)
-	fmt.Println("A / B", D) // Выводим значение деления чисел с плавающей точкой
+	fmt.Println("A / B", D)
 }
 
 func checkError(err error) {
