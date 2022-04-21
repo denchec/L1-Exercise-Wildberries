@@ -4,10 +4,10 @@ import "fmt"
 
 func main() {
 	var A int
-	var B int
-
 	_, aErr := fmt.Scan(&A)
 	checkError(aErr)
+
+	var B int
 	_, bErr := fmt.Scan(&B)
 	checkError(bErr)
 
