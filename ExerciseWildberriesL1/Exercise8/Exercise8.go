@@ -2,36 +2,33 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"strconv"
 )
 
 func main() {
-	var timeValue time.Duration
-	_, err := fmt.Scan(&timeValue)
-	checkError(err)
+	dataMap := make(map[int]int64)
 
-	ch := make(chan int, 1)
+	// Не смог додуматься, как сканировать сразу в карту, пришлось добавить эту переменную
+	var helpScan int64
 
-	exitTime := time.After(time.Second * timeValue)
-
-	var sequenceOfNumbers []int
-
-	num := 1
-	for {
-		select {
-		case <-exitTime:
-			fmt.Println(len(sequenceOfNumbers))
-			return
-			/* Если время еще НЕ истекло, то:
-			1) в канал передается число из переменной num
-			2) число забирается из канала и добавляется в срез sequenceOfNumbers
-			3) переменная num увеличивается на 1*/
-		default:
-			ch <- num
-			sequenceOfNumbers = append(sequenceOfNumbers, <-ch)
-			num += 1
-		}
+	// Заполняем карту введенными данными с клавиатуры, присваивая i в качестве ключа
+	for i := 0; i < 3; i++ {
+		_, err := fmt.Scan(&helpScan)
+		checkError(err)
+		dataMap[i] = helpScan
 	}
+
+	fmt.Println(strconv.FormatInt(dataMap[0], 2))
+
+	var endNum int64
+
+	if dataMap[2] == 1 {
+		endNum = dataMap[0] | dataMap[2]<<(dataMap[1]-1)
+	} else if dataMap[2] == 0 {
+		endNum = dataMap[0] & (9223372036854775807 - 1<<(dataMap[1]-1))
+	}
+
+	fmt.Println(strconv.FormatInt(endNum, 2))
 }
 
 func checkError(err error) {
