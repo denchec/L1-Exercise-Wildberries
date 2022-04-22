@@ -17,7 +17,6 @@ func main() {
 
 	dataOfSquaring := make(chan int, len(safeCount.array))
 
-	// Создали 5 горутин, которые подсчитывают квадрат чисел и записывают в канал
 	for i := 0; i < len(safeCount.array); i++ {
 		go func(i int) {
 			wg.Add(1)
