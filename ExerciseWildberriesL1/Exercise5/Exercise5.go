@@ -7,17 +7,17 @@ import (
 )
 
 func main() {
-	var numSec time.Duration
-	_, err := fmt.Scan(&numSec)
+	var timeValue time.Duration
+	_, err := fmt.Scan(&timeValue)
 	checkError(err)
 
 	wg := sync.WaitGroup{}
 
 	ch := make(chan int, 1)
 
-	exitTime := time.After(time.Second * numSec)
+	exitTime := time.After(time.Second * timeValue)
 
-	sequenceOfNumbers := []int{}
+	var sequenceOfNumbers []int
 
 	wg.Add(1)
 	go func() {
